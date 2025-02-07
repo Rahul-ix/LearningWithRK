@@ -124,13 +124,12 @@
   </div>
 </div>
 <script>
-  let userName = localStorage.getItem("userName");
-
   function askUserName() {
-    if (!userName) {
-      userName = prompt("Enter your name:") || "Anonymous";
-      localStorage.setItem("userName", userName);
+    let userName = localStorage.getItem("userName");
+    while (!userName || userName.trim() === "") {
+      userName = prompt("Enter your name:").trim();
     }
+    localStorage.setItem("userName", userName);
     document.getElementById("welcomeMessage").innerText = `Hey there, ${userName}!`;
   }
 
