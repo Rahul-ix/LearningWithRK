@@ -79,6 +79,12 @@
       height: auto;
       border-radius: 10px;
     }
+    #welcomeMessage {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffcc00;
+    }
     @media (min-width: 768px) {
       .container {
         flex-direction: row;
@@ -110,6 +116,7 @@
     </ul>
   </div>
   <div class="video-container">
+    <p id="welcomeMessage"></p>
     <video id="videoFrame" controls>
       <source src="" type="video/mp4">
       Your browser does not support the video tag.
@@ -124,6 +131,7 @@
       userName = prompt("Enter your name:") || "Anonymous";
       localStorage.setItem("userName", userName);
     }
+    document.getElementById("welcomeMessage").innerText = `Hey there, ${userName}!`;
   }
 
   function askNameAndLoadVideo(element, title, url) {
@@ -136,6 +144,9 @@
   function toggleTheme() {
     document.body.classList.toggle("dark-mode");
   }
+
+  // Ensure name is asked on page load if not set
+  window.onload = askUserName;
 </script>
 </body>
 </html>
