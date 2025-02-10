@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning RK</title>
     <style>
+        .arrow {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 8px solid black; /* Arrow pointing down */
+        }
         * {
             margin: 0;
             padding: 0;
@@ -142,7 +150,7 @@
 <div class="container">
     <div class="sidebar">
         <!-- Java Core Playlist -->
-        <h2 onclick="toggleJavaCorePlaylist()">Java Core Playlist</h2>
+        <h2 onclick="toggleJavaCorePlaylist()">Java Core Playlist <span class="arrow"></span></h2>
         <ul id="javaCoreList" style="display: none;">
             <li data-video="File/nonstatic_theory.mp4" onclick="loadVideo(this, 'File/nonstatic thoery.mp4')" oncontextmenu="handleRightClick(event, this)">
                 <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Non-Static Theory
@@ -168,7 +176,7 @@
         </ul>
 
         <!-- SQL Playlist -->
-        <h2 onclick="toggleSQLPlaylist()">SQL Playlist</h2>
+        <h2 onclick="toggleSQLPlaylist()">SQL Playlist <span class="arrow"></span></h2>
         <ul id="sqlPlaylist" style="display: none;">
 
             <li data-video="File/sql_select.mp4" onclick="loadVideo(this, 'File/sql part 1.mp4')" oncontextmenu="handleRightClick(event, this)">
