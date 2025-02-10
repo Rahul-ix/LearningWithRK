@@ -1,181 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learning RK</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-    body {
-      background: #0f0f0f;
-      color: #fff;
-      overflow-x: hidden;
-    }
-    header {
-      background: #181818;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-    .sidebar {
-      width: 100%;
-      background: #202020;
-      color: white;
-      padding: 15px;
-      overflow-y: auto;
-      text-align: center;
-      border-radius: 10px;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 10px;
-    }
-    .sidebar ul li {
-      padding: 15px;
-      cursor: pointer;
-      background: #282828;
-      margin: 8px 0;
-      border-radius: 8px;
-      transition: background 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      position: relative;
-    }
-    .sidebar ul li img {
-      width: 30px;
-      height: 30px;
-      border: 2px solid white;
-      border-radius: 50%;
-      padding: 5px;
-      transition: border-color 0.3s;
-      position: relative;
-    }
-    .sidebar ul li.watched img {
-      border-color: blue;
-      position: relative;
-    }
-    .sidebar ul li.watched img::after {
-      content: '\2714'; /* Checkmark symbol */
-      font-size: 16px;
-      color: white;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-weight: bold;
-    }
-    .sidebar ul li:hover {
-      background: #383838;
-    }
-    .video-container {
-      width: 100%;
-      max-width: 600px;
-      text-align: center;
-      margin-top: 20px;
-    }
-    video {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    @media (min-width: 768px) {
-      .container {
-        flex-direction: row;
-      }
-      .sidebar {
-        width: 300px;
-        height: 100vh;
-        position: fixed;
-        left: 0;
-        top: 60px;
-      }
-      .video-container {
-        margin-left: 320px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning RK</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #0f0f0f;
+            color: #fff;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+        header {
+            background: #181818;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 20px;
+            height: calc(100vh - 60px); /* Adjust for header height */
+        }
+        .sidebar {
+            width: 250px;
+            background: #202020;
+            color: white;
+            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
+            position: fixed;
+            left: 0;
+            top: 60px;
+            text-align: center;
+            border-radius: 10px;
+            display: block;
+            z-index: 999;
+        }
+        .sidebar h2 {
+            margin-bottom: 20px;
+            cursor: pointer;
+            text-align: left;
+            padding-left: 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            background: #282828;
+            margin: 8px 0;
+            border-radius: 8px;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+        .sidebar ul li img {
+            width: 30px;
+            height: 30px;
+            border: 2px solid white;
+            border-radius: 50%;
+            padding: 5px;
+            transition: border-color 0.3s;
+        }
+        .sidebar ul li.watched img {
+            border-color: blue;
+        }
+        .sidebar ul li.watched img::after {
+            content: '\2714'; /* Checkmark symbol */
+            font-size: 16px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+        }
+        .sidebar ul li:hover {
+            background: #383838;
+        }
+        .video-container {
+            margin-left: 270px; /* Space for sidebar */
+            width: calc(100% - 270px); /* Ensure video container takes remaining space */
+            max-width: 700px;
+            text-align: center;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Mobile styling */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                z-index: 10;
+            }
+            .video-container {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 20px;
+            }
+            .sidebar h2 {
+                cursor: pointer;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
 <header>
-  Learning RK
+    Learning RK
 </header>
 <div class="container">
-  <div class="sidebar">
-    <h2>Java Core Playlist</h2>
-    <ul id="videoList">
-      <li data-video="File/static thoery.mp4" onclick="loadVideo(this, 'File/nonstatic thoery.mp4')" oncontextmenu="handleRightClick(event, this)">
-        <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Non-Static Theory
-      </li>
-      <li data-video="File/nonstatic practicle.mp4" onclick="loadVideo(this, 'File/nonstatic practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
-        <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon">Non-Static Practice
-      </li>
- <li data-video="File/nonstatic practicle.mp4" onclick="loadVideo(this, 'File/static theory.mp4')" oncontextmenu="handleRightClick(event, this)">
-        <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon">Static Theory
-      </li>
- <li data-video="File/nonstatic practicle.mp4" onclick="loadVideo(this, 'File/static practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
-        <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon">Static Practice
-      </li>
-<li data-video="File/nonstatic practicle.mp4" onclick="loadVideo(this, 'File/local theory.mp4')" oncontextmenu="handleRightClick(event, this)">
-        <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon">Local Theory
-      </li>
-<li data-video="File/nonstatic practicle.mp4" onclick="loadVideo(this, 'File/local practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
-        <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon">Local practicle
-      </li>
- <li data-video="File/nonstatic practicle.mp4" onclick="loadVideo(this, 'File/stack_heap_gc.mp4')" oncontextmenu="handleRightClick(event, this)">
-        <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon">Static heap and GC
-      </li>
-    </ul>
-  </div>
-  <div class="video-container">
-    <video id="videoFrame" controls onended="markAsWatched()">
-      <source src="" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+    <div class="sidebar">
+        <!-- Java Core Playlist -->
+        <h2 onclick="toggleJavaCorePlaylist()">Java Core Playlist</h2>
+        <ul id="javaCoreList" style="display: none;">
+            <li data-video="File/nonstatic_theory.mp4" onclick="loadVideo(this, 'File/nonstatic thoery.mp4')" oncontextmenu="handleRightClick(event, this)">
+                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Non-Static Theory
+            </li>
+            <li data-video="File/nonstatic_practice.mp4" onclick="loadVideo(this, 'File/nonstatic practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
+                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Non-Static Practice
+            </li>
+            <li data-video="File/static_theory.mp4" onclick="loadVideo(this, 'File/static theory.mp4')" oncontextmenu="handleRightClick(event, this)">
+                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Static Theory
+            </li>
+            <li data-video="File/static_practice.mp4" onclick="loadVideo(this, 'File/static practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
+                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Static Practice
+            </li>
+            <li data-video="File/local_theory.mp4" onclick="loadVideo(this, 'File/local theory.mp4')" oncontextmenu="handleRightClick(event, this)">
+                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Local Theory
+            </li>
+            <li data-video="File/local_practice.mp4" onclick="loadVideo(this, 'File/local practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
+                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Local Practice
+            </li>
+            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/stack_heap_gc.mp4')" oncontextmenu="handleRightClick(event, this)">
+                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Stack, Heap, and GC
+            </li>
+        </ul>
+
+        <!-- SQL Playlist -->
+        <h2 onclick="toggleSQLPlaylist()">SQL Playlist</h2>
+        <ul id="sqlPlaylist" style="display: none;">
+
+            <li data-video="File/sql_select.mp4" onclick="loadVideo(this, 'File/sql part 1.mp4')" oncontextmenu="handleRightClick(event, this)">
+                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> SQL Part 1
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="video-container">
+        <video id="videoFrame" controls onended="markAsWatched()">
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 </div>
+
 <script>
-  function loadVideo(element, url) {
-    let video = document.getElementById("videoFrame");
-    video.src = url;
-    sessionStorage.setItem("currentVideo", url);
-  }
-
-  function markAsWatched() {
-    let currentVideo = sessionStorage.getItem("currentVideo");
-    let listItems = document.querySelectorAll(".sidebar ul li");
-    listItems.forEach(li => {
-      if (li.getAttribute("data-video") === currentVideo) {
-        li.classList.add("watched");
-      }
-    });
-  }
-
-  function handleRightClick(event, element) {
-    event.preventDefault();
-    if (element.classList.contains("watched")) {
-      alert("This video has already been watched!");
+    function toggleJavaCorePlaylist() {
+        const videoList = document.getElementById('javaCoreList');
+        const sqlPlaylist = document.getElementById('sqlPlaylist');
+        if (videoList.style.display === 'block') {
+            videoList.style.display = 'none';
+        } else {
+            videoList.style.display = 'block';
+            sqlPlaylist.style.display = 'none'; // Hide SQL playlist if Java Core is shown
+        }
     }
-  }
+
+    function toggleSQLPlaylist() {
+        const sqlPlaylist = document.getElementById('sqlPlaylist');
+        const javaCoreList = document.getElementById('javaCoreList');
+        if (sqlPlaylist.style.display === 'block') {
+            sqlPlaylist.style.display = 'none';
+        } else {
+            sqlPlaylist.style.display = 'block';
+            javaCoreList.style.display = 'none'; // Hide Java Core playlist if SQL is shown
+        }
+    }
+
+    function loadVideo(element, url) {
+        let video = document.getElementById("videoFrame");
+        video.src = url;
+        sessionStorage.setItem("currentVideo", url);
+    }
+
+    function markAsWatched() {
+        let currentVideo = sessionStorage.getItem("currentVideo");
+        let listItems = document.querySelectorAll(".sidebar ul li");
+        listItems.forEach(li => {
+            if (li.getAttribute("data-video") === currentVideo) {
+                li.classList.add("watched");
+            }
+        });
+    }
+
+    function handleRightClick(event, element) {
+        event.preventDefault();
+        if (element.classList.contains("watched")) {
+            alert("This video has already been watched!");
+        }
+    }
 </script>
 </body>
 </html>
