@@ -1,284 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning RK</title>
-    <style>
-        .arrow {
-            display: inline-block;
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 8px solid black; /* Arrow pointing down */
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background: #0f0f0f;
-            color: #fff;
-            overflow-x: hidden;
-            font-size: 16px;
-        }
-        header {
-            background: #181818;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .container {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            padding: 20px;
-            height: calc(100vh - 60px); /* Adjust for header height */
-        }
-        .sidebar {
-            width: 250px;
-            background: #202020;
-            color: white;
-            padding: 20px;
-            height: 100%;
-            overflow-y: auto;
-            position: fixed;
-            left: 0;
-            top: 60px;
-            text-align: center;
-            border-radius: 10px;
-            display: block;
-            z-index: 999;
-        }
-        .sidebar h2 {
-            margin-bottom: 20px;
-            cursor: pointer;
-            text-align: left;
-            padding-left: 10px;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 10px;
-        }
-        .sidebar ul li {
-            padding: 15px;
-            cursor: pointer;
-            background: #282828;
-            margin: 8px 0;
-            border-radius: 8px;
-            transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-        }
-        .sidebar ul li img {
-            width: 30px;
-            height: 30px;
-            border: 2px solid white;
-            border-radius: 50%;
-            padding: 5px;
-            transition: border-color 0.3s;
-        }
-        .sidebar ul li.watched img {
-            border-color: blue;
-        }
-        .sidebar ul li.watched img::after {
-            content: '\2714'; /* Checkmark symbol */
-            font-size: 16px;
-            color: white;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-weight: bold;
-        }
-        .sidebar ul li:hover {
-            background: #383838;
-        }
-        .video-container {
-            margin-left: 270px; /* Space for sidebar */
-            width: calc(100% - 270px); /* Ensure video container takes remaining space */
-            max-width: 700px;
-            text-align: center;
-        }
-        video {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>home</title>
 
-        /* Mobile styling */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-            .sidebar {
-                position: static;
-                width: 100%;
-                height: auto;
-                z-index: 10;
-            }
-            .video-container {
-                margin-left: 0;
-                width: 100%;
-                margin-top: 20px;
-            }
-            .sidebar h2 {
-                cursor: pointer;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
-<header>
-    Learning RK
-</header>
-<div class="container">
-    <div class="sidebar">
-        <!-- Java Core Playlist -->
-        <h2 onclick="toggleJavaCorePlaylist()"> &#x27A4; Java Core Playlist </h2>
-        <ul id="javaCoreList" style="display: none;">
-            <li data-video="File/nonstatic_theory.mp4" onclick="loadVideo(this, 'File/nonstatic thoery.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Non-Static Theory
-            </li>
-            <li data-video="File/nonstatic_practice.mp4" onclick="loadVideo(this, 'File/nonstatic practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Non-Static Practice
-            </li>
-            <li data-video="File/static_theory.mp4" onclick="loadVideo(this, 'File/static theory.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Static Theory
-            </li>
-            <li data-video="File/static_practice.mp4" onclick="loadVideo(this, 'File/static practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Static Practice
-            </li>
-            <li data-video="File/local_theory.mp4" onclick="loadVideo(this, 'File/local theory.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Local Theory
-            </li>
-            <li data-video="File/local_practice.mp4" onclick="loadVideo(this, 'File/local practicle.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Local Practice
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/stack_heap_gc.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Stack, Heap, and GC
-            </li>
 
+<header class="header">
+   
+   <section class="flex">
 
+      <a href="index.html" class="logo">ELearning RK</a>
 
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/data types.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Data types
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/method.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Methods
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/return_return_value.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> return and return value keyword
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/cons_cons_over.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Constructor
-            </li>
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
 
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
 
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/this keyword part 1.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> this keyword part 1
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/this keyword part 2.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> this keyword part 2
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/cons chaining.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Constructor chaining
-            </li>
+      <div class="profile">
+         <img src="images/pic-2.jpg" class="image" alt="">
+         <h3 class="name">Rahul RK</h3>
+         <p class="role">Java Developer</p>
+         <a href="profile.html" class="btn">view profile</a>
+         
+      </div>
 
+   </section>
 
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/compiler.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Compiler and JRE
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/default cons.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Default constructor
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/inheritance.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Inheritance
-            </li>
-            <li data-video="File/stack_heap_gc.mp4" onclick="loadVideo(this, 'File/multilevel.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> Multilevel inheritance
-            </li>
-        </ul>
+</header>   
 
-        <!-- SQL Playlist -->
-        <h2 onclick="toggleSQLPlaylist()"> &#x27A4; SQL Playlist </h2>
-        <ul id="sqlPlaylist" style="display: none;">
+<div class="side-bar">
 
-            <li data-video="File/sql_select.mp4" onclick="loadVideo(this, 'File/sql part 1.mp4')" oncontextmenu="handleRightClick(event, this)">
-                <img src="https://img.icons8.com/?size=100&id=398&format=png&color=000000" alt="icon"> SQL Part 1
-            </li>
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
 
-        </ul>
-    </div>
+   <div class="profile">
+      <img src="images/pic-2.jpg" class="image" alt="">
+      <h3 class="name">Rahul RK</h3>
+      <p class="role">Java Developer</p>
+      <a href="profile.html" class="btn">view profile</a>
+   </div>
 
-    <div class="video-container">
-        <video id="videoFrame" controls onended="markAsWatched()">
-            <source src="" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+   <nav class="navbar">
+      <a href="index.html"><i class="fas fa-home"></i><span>home</span></a>
+      <a href="about.html"><i class="fas fa-question"></i><span>about</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+      <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
+      <a href="contact.html"><i class="fas fa-headset"></i><span>contact us</span></a>
+   </nav>
+
 </div>
 
-<script>
-    function toggleJavaCorePlaylist() {
-        const videoList = document.getElementById('javaCoreList');
-        const sqlPlaylist = document.getElementById('sqlPlaylist');
-        if (videoList.style.display === 'block') {
-            videoList.style.display = 'none';
-        } else {
-            videoList.style.display = 'block';
-            sqlPlaylist.style.display = 'none'; // Hide SQL playlist if Java Core is shown
-        }
-    }
+<section class="home-grid">
 
-    function toggleSQLPlaylist() {
-        const sqlPlaylist = document.getElementById('sqlPlaylist');
-        const javaCoreList = document.getElementById('javaCoreList');
-        if (sqlPlaylist.style.display === 'block') {
-            sqlPlaylist.style.display = 'none';
-        } else {
-            sqlPlaylist.style.display = 'block';
-            javaCoreList.style.display = 'none'; // Hide Java Core playlist if SQL is shown
-        }
-    }
+   <h1 class="heading">quick options</h1>
 
-    function loadVideo(element, url) {
-        let video = document.getElementById("videoFrame");
-        video.src = url;
-        sessionStorage.setItem("currentVideo", url);
-    }
+   <div class="box-container">
 
-    function markAsWatched() {
-        let currentVideo = sessionStorage.getItem("currentVideo");
-        let listItems = document.querySelectorAll(".sidebar ul li");
-        listItems.forEach(li => {
-            if (li.getAttribute("data-video") === currentVideo) {
-                li.classList.add("watched");
-            }
-        });
-    }
+     
 
-    function handleRightClick(event, element) {
-        event.preventDefault();
-        if (element.classList.contains("watched")) {
-            alert("This video has already been watched!");
-        }
-    }
-</script>
+     
+
+      <div class="box">
+         <h3 class="title">popular topics</h3>
+         <div class="flex">
+            <a href="#"></i><span>Java Core</span></a>
+            <a href="#"></i><span>Sql</span></a>
+
+            <a href="#"><i class="fab fa-html5"></i><span>HTML</span></a>
+            <a href="#"><i class="fab fa-css3"></i><span>CSS</span></a>
+            <a href="#"><i class="fab fa-js"></i><span>javascript</span></a>
+            <a href="#"><i class="fab fa-react"></i><span>react</span></a>
+         </div>
+      </div>
+
+      
+   </div>
+
+</section>
+
+
+
+<section class="courses">
+
+   <h1 class="heading">our courses</h1>
+
+   <div class="box-container">
+
+     <div class="box">
+         <div class="tutor">
+            <img src="images/pic-2.jpg" alt="">
+            <div class="info">
+               <h3>Rahul RK</h3>
+               <span>01-02-2025</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <img src="images/post-1-1.png" alt="">
+            <span>18 videos</span>
+         </div>
+         <h3 class="title">complete Java Core tutorial</h3>
+         <a href="playlist.html" class="inline-btn">view playlist</a>
+      </div>
+
+
+
+      <div class="box">
+         <div class="tutor">
+            <img src="images/pic-2.jpg" alt="">
+            <div class="info">
+               <h3>Rahul RK</h3>
+               <span>01-02-2025</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <img src="images/pc.jpg" alt="">
+            <span>0 videos</span>
+         </div>
+         <h3 class="title">complete SQL Core tutorial</h3>
+         <a href="playlist.html" class="inline-btn">view playlist</a>
+      </div>
+
+
+
+     
+   </div>
+
+   <div class="more-btn">
+      <a href="courses.html" class="inline-option-btn">view all courses</a>
+   </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+
+   &copy; copyright @ 2025 by <span>Java Developer</span> | all rights reserved!
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+   
 </body>
 </html>
