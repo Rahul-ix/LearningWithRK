@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 
-.container {
+.containerss {
    width: 100%; /* Increased width for a wider box */
    height: 100px; /* Slightly taller box for better proportions */
    overflow: hidden;
@@ -13,7 +13,7 @@
    padding: 0 40px; /* Added more padding for better spacing */
 }
 
-.content {
+.contentss {
    font-size: 1.8rem; /* Larger font size */
    color: white;
    font-weight: 600;
@@ -31,7 +31,8 @@
    }
 }
 
-.highlight {
+.highlightss
+{
    background-color: #e74c3c;
    padding: 8px 20px;
    border-radius: 8px;
