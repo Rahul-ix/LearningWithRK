@@ -1,4 +1,94 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+/* Container with full-screen layout */
+/* Container with full-screen layout */
+.containeree {
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    background-color: black; /* Dark background for contrast */
+}
+
+/* Glowing text styling */
+.glowing-text {
+    font-size: 3em; /* Adjust text size */
+    color: #fff;
+    text-align: center;
+    animation: glowing 1s infinite; /* Glowing effect */
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff007f, 0 0 20px #ff007f, 0 0 25px #ff007f, 0 0 30px #ff007f, 0 0 35px #ff007f;
+    margin-bottom: 20px;
+}
+
+/* Glowing animation */
+@keyframes glowing {
+    0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff007f, 0 0 20px #ff007f, 0 0 25px #ff007f, 0 0 30px #ff007f, 0 0 35px #ff007f; }
+    50% { text-shadow: 0 0 10px #fff, 0 0 15px #ff007f, 0 0 20px #ff007f, 0 0 25px #ff007f, 0 0 30px #ff007f, 0 0 35px #ff007f, 0 0 40px #ff007f; }
+    100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff007f, 0 0 20px #ff007f, 0 0 25px #ff007f, 0 0 30px #ff007f, 0 0 35px #ff007f; }
+}
+
+/* LED row setup */
+.led-row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%; /* Set full width */
+    position: relative;
+    margin-top: 40px;
+}
+
+/* LED box setup */
+.led-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    position: relative;
+}
+
+/* LED triangle shapes */
+.led-green, .led-yellow, .led-red, .led-blue, .led-pink, .led-purple, .led-white, .led-orange, .led-teal, .led-brown {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 20px solid;
+    margin: 0;
+}
+
+/* Colors for each LED */
+.led-green { border-top-color: #ABFF00; }
+.led-yellow { border-top-color: #FF0; }
+.led-red { border-top-color: #F00; }
+.led-blue { border-top-color: #24E0FF; }
+.led-pink { border-top-color: #FF1493; }
+.led-purple { border-top-color: #800080; }
+.led-white { border-top-color: #FFFFFF; }
+.led-orange { border-top-color: #FFA500; }
+.led-teal { border-top-color: #008080; }
+.led-brown { border-top-color: #8B4513; }
+
+/* Animate LED sequence to create blinking effect */
+@keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Sequential blink animation */
+.led-green { animation: blink 3s infinite; animation-delay: 0s; }
+.led-yellow { animation: blink 3s infinite; animation-delay: 0.3s; }
+.led-red { animation: blink 3s infinite; animation-delay: 0.6s; }
+.led-blue { animation: blink 3s infinite; animation-delay: 0.9s; }
+.led-pink { animation: blink 3s infinite; animation-delay: 1.2s; }
+.led-purple { animation: blink 3s infinite; animation-delay: 1.5s; }
+.led-white { animation: blink 3s infinite; animation-delay: 1.8s; }
+.led-orange { animation: blink 3s infinite; animation-delay: 2.1s; }
+.led-teal { animation: blink 3s infinite; animation-delay: 2.4s; }
+.led-brown { animation: blink 3s infinite; animation-delay: 2.7s; }
+
 
 .containerss {
     width: 100%; /* Increased width for a wider box */
@@ -375,6 +465,7 @@ section{
     grid-template-columns: repeat(auto-fit, 27.5rem);
     gap:1.5rem;
     justify-content: center;
+background-color:black;
     align-items: flex-start;
 }
 
