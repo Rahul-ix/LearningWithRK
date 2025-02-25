@@ -139,6 +139,7 @@
     --black:#2c3e50;
     --white:#fff;
     --border:.1rem solid rgba(0,0,0,.2);
+    display: grid;
 }
 
 *{
