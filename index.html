@@ -14,20 +14,45 @@
    <link rel="stylesheet" href="css/style.css">
 
    <style>
-      .holi-image {
-         width: 100%;
-         height: auto;
-         max-width: 600px;
-         display: block;
-         margin: 20px auto;
-         border-radius: 10px;
-         box-shadow: 0 0 15px rgba(255, 64, 129, 0.7), 0 0 25px rgba(255, 64, 129, 0.7);
-         transition: all 0.3s ease-in-out;
-      }
+      /* Container for holi image */
+.containeree {
+   display: flex;
+   justify-content: center; /* Centers the image horizontally */
+   align-items: center; /* Centers the image vertically */
+   overflow: hidden; /* Prevents the image from overflowing */
+   padding: 10px;
+   width: 100%; /* Ensures the container takes full width */
+}
 
-      .holi-image:hover {
-         transform: scale(1.05);
-      }
+/* Holi image styling */
+.holi-image {
+   width: 90%;  /* Makes the image responsive on all devices, adjust to fit the container */
+   max-width: 500px; /* Limit max width for the image */
+   height: auto;   /* Keeps the aspect ratio */
+   border-radius: 10px;
+   box-shadow: 0 0 15px rgba(255, 64, 129, 0.7), 0 0 25px rgba(255, 64, 129, 0.7);
+   transition: transform 0.3s ease-in-out; /* Smooth scaling transition */
+}
+
+.holi-image:hover {
+   transform: scale(1.05); /* On hover, slightly enlarge the image */
+}
+
+/* Responsive adjustments for smaller devices */
+@media screen and (max-width: 768px) {
+   .holi-image {
+      width: 80%;  /* For tablets and mobile, slightly smaller width */
+      max-width: 400px; /* Limit the image size even more */
+   }
+}
+
+@media screen and (max-width: 480px) {
+   .holi-image {
+      width: 70%;  /* For small devices like phones */
+      max-width: 300px; /* Further limit the image size */
+   }
+}
+
    </style>
 
 </head>
@@ -84,8 +109,10 @@
 
    <div class="containeree">
       <!-- Holi Image -->
-      <img src="images/images.jpeg"/>
+      <img src="images/images.jpeg" class="holi-image" alt="Holi Image"/>
+   </div>
 </section>
+
 
 <section class="courses">
    <h1 class="heading">our courses</h1>
