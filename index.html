@@ -7,19 +7,34 @@
    <title>home</title>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-   <!-- font awesome cdn link  -->
+   <!-- font awesome cdn link -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
-   <!-- custom css file link  -->
+   <!-- custom css file link -->
    <link rel="stylesheet" href="css/style.css">
+
+   <style>
+      .holi-image {
+         width: 100%;
+         height: auto;
+         max-width: 600px;
+         display: block;
+         margin: 20px auto;
+         border-radius: 10px;
+         box-shadow: 0 0 15px rgba(255, 64, 129, 0.7), 0 0 25px rgba(255, 64, 129, 0.7);
+         transition: all 0.3s ease-in-out;
+      }
+
+      .holi-image:hover {
+         transform: scale(1.05);
+      }
+   </style>
 
 </head>
 <body>
 
 <header class="header">
-   
    <section class="flex">
-
       <a href="index.html" class="logo">ELearning RK</a>
 
       <form action="search.html" method="post" class="search-form">
@@ -39,15 +54,11 @@
          <h3 class="name">Rahul RK</h3>
          <p class="role">Java Developer</p>
          <a href="profile.html" class="btn">view profile</a>
-         
       </div>
-
    </section>
-
-</header>   
+</header>
 
 <div class="side-bar">
-
    <div id="close-btn">
       <i class="fas fa-times"></i>
    </div>
@@ -66,75 +77,21 @@
       <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
       <a href="contact.html"><i class="fas fa-headset"></i><span>contact us</span></a>
    </nav>
-
 </div>
 
 <section class="home-grid">
+   <h1 class="heading">place ad here</h1>
 
-   <h1 class="heading">quick options</h1>
-
-   <div class="box-container">
-
-      <div class="containeree">
-         <!-- Glowing Text -->
-         <div class="glowing-text">
-            Happy Maha Shivratri
-         </div>
-
-         <!-- LED Row -->
-         <div class="led-row">
-            <div class="led-box">
-               <div class="led-green"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-yellow"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-red"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-blue"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-pink"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-purple"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-white"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-orange"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-teal"></div>
-            </div>
-            <div class="led-box">
-               <div class="led-brown"></div>
-            </div>
-         </div>
-      </div>
-
-
-
-
-
-
-
-   </div>
-
+   <div class="containeree">
+      <!-- Holi Image -->
+      <img src="images/images.jpeg"/>
 </section>
 
-
-
 <section class="courses">
-
    <h1 class="heading">our courses</h1>
 
    <div class="box-container">
-
-     <div class="box">
+      <div class="box">
          <div class="tutor">
             <img src="images/pic-2.jpg" alt="">
             <div class="info">
@@ -166,9 +123,6 @@
          <a href="https://rahul-ix.github.io/jplay/" class="inline-btn">view playlist</a>
       </div>
 
-
-
-
       <div class="box">
          <div class="tutor">
             <img src="images/pic-2.jpg" alt="">
@@ -198,9 +152,7 @@
             <span>4 videos</span>
          </div>
          <h3 class="title">complete JDBC tutorial</h3>
-         <a href="https://rahul-ix.github.io/jdbc_playlist/" class="inline-btn">
-           View Playlist
-         </a>
+         <a href="https://rahul-ix.github.io/jdbc_playlist/" class="inline-btn">View Playlist</a>
       </div>
       <div class="box">
          <div class="tutor">
@@ -215,9 +167,7 @@
             <span>0 videos</span>
          </div>
          <h3 class="title">complete Linux tutorial</h3>
-         <a href="#" class="inline-btn">
-            <i class="fa fa-lock"></i> View Playlist
-         </a>
+         <a href="#" class="inline-btn"><i class="fa fa-lock"></i> View Playlist</a>
       </div>
       <div class="box">
          <div class="tutor">
@@ -232,9 +182,7 @@
             <span>0 videos</span>
          </div>
          <h3 class="title">Shell script tutorial</h3>
-         <a href="#" class="inline-btn">
-            <i class="fa fa-lock"></i> View Playlist
-         </a>
+         <a href="#" class="inline-btn"><i class="fa fa-lock"></i> View Playlist</a>
       </div>
       <div class="box">
          <div class="tutor">
@@ -249,42 +197,22 @@
             <span>0 videos</span>
          </div>
          <h3 class="title">complete AWS tutorial</h3>
-         <a href="#" class="inline-btn">
-            <i class="fa fa-lock"></i> View Playlist
-         </a>
+         <a href="#" class="inline-btn"><i class="fa fa-lock"></i> View Playlist</a>
       </div>
-
    </div>
 
    <div class="more-btn">
       <a href="courses.html" class="inline-option-btn">view all courses</a>
    </div>
-
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <footer class="footer">
-
    &copy; copyright @ 2025 by <span>Java Developer</span> | all rights reserved!
-
 </footer>
 
-<!-- custom js file link  -->
+<!-- custom js file link -->
 <script src="js/script.js"></script>
 
-   
 </body>
-</html>
+   </html>
+   
